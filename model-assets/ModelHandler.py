@@ -9,6 +9,27 @@ logger = logging.getLogger(__name__)
 
 class ModelHandler(BaseHandler):
 
+    model_to_type = {
+        "en": "roberta",
+        "pt_br": "bert",
+        "multilang": "bert",
+    }
+
+    model_args = {
+        "num_train_epochs": 2,
+        "max_seq_length": 384,
+        "doc_stride": int(384 * 0.8),
+        "train_batch_size": 16,
+        "gradient_accumulation_steps": 1,
+        "eval_batch_size": 16,
+        "save_steps": -1,
+        "save_model_every_epoch": True,
+        "evaluate_during_training_steps": -1,
+        "evaluate_during_training": True,
+        "evaluate_during_training_verbose": True,
+        "use_cached_eval_features": True,
+    }
+
     def __init__(self):
         super(ModelHandler, self).__init__()
         self.initialized = False
@@ -22,6 +43,9 @@ class ModelHandler(BaseHandler):
         self.manifest = context.manifest
         properties = context.system_properties
         model_dir = properties.get("model_dir")
+        model_name = context.model_name
+
+        logger.info(f"Model name: {model_name} ...")
 
         self.device = torch.device(
             "cuda:" + str(properties.get("gpu_id"))
@@ -30,28 +54,11 @@ class ModelHandler(BaseHandler):
         )
 
         logger.info(f"Device found: {self.device} ...")
-        model_dict = {
-            'args': {
-                "num_train_epochs": 2,
-                "max_seq_length": 384,
-                "doc_stride": int(384*0.8),
-                "train_batch_size": 16,
-                "gradient_accumulation_steps": 1,
-                "eval_batch_size": 16,
-                "save_steps": -1,
-                "save_model_every_epoch": True,
-                "evaluate_during_training_steps": -1,
-                "evaluate_during_training": True,
-                "evaluate_during_training_verbose": True,
-                "use_cached_eval_features": True
-            },
-            'type': 'bert'
-        }
 
         self.model = QuestionAnsweringModel(
-            model_dict.get('type'),
+            self.model_to_type.get(model_name),
             model_dir,
-            args=model_dict.get('args'),
+            args=self.model_args,
             use_cuda=str(self.device) != "cpu"
         )
 
