@@ -1,5 +1,5 @@
 #!/bin/bash
-torch-model-archiver --model-name QA_pt-br \
+torch-model-archiver --model-name pt_br \
 --version 1.0 \
 --serialized-file pt_br/pytorch_model.bin \
 --export-path ./model-store -f \
