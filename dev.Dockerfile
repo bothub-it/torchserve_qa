@@ -1,8 +1,9 @@
 # This Dev dockerfile requires pre-built .mar models inside folder /model-store
 # to avoid the need of downloading models on every build.
-# to build .mar models check build_mar_example.sh
 #
-# config.properties file must be adapted to suit model names and configs
+# To build .mar models check build_mar_example.sh.
+#
+# model_name should be "en", "pt_br" or "multilang".
 #
 
 FROM pytorch/torchserve:latest

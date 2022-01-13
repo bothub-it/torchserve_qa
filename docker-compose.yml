@@ -10,7 +10,7 @@ services:
       - "8080:8080"
       - "8081:8081"
       - "8082:8082"
-    # instead of giving the URLs to download it is possible to
+    # instead of putting the models in image at build time, it is possible to
     # create a volume at runtime containing a folder with .mar models
     #volumes:
     #  - "./model-store:/home/model-server/model-store"

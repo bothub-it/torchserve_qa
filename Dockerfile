@@ -1,10 +1,10 @@
-# Requires ARG DOWNLOAD_MODELS (urls of zipped models to download)
-# ie.: DOWNLOAD_MODELS="model1_name:model1_version=URL1|model2_name:model2_version=URL2|..."
+# Requires --build-arg DOWNLOAD_MODELS="model1_name:model1_version=URL1|model2_name:model2_version=URL2|..."
+# eg.: DOWNLOAD_MODELS="pt_br:1.0=http://modelurl.com/pt_br|en:1.0=http://modelurl.com/en"
 #
-# The URLs must contain zipped files formatted as <any_name.zip/model_name/.>
-# to be properly processed
+# The URLs must contain zipped files formatted as <any_name.zip/model_name/files_here>
+# to be properly processed.
 #
-# config.properties file must be adapted to suit model name and configs
+# model_name should be "en", "pt_br" or "multilang".
 #
 
 FROM pytorch/torchserve:latest
