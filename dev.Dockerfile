@@ -22,5 +22,5 @@ COPY model-store ${WORKDIR}/model-store
 
 CMD ["torchserve", "--start", "--model-store", "model-store"]
 
-# Instead of config.properties, some configs could be passed dinamically as:
-# CMD ["torchserve", "--start", "--model-store", "model-store", "--models", "pt_br=pt_br.mar", "--ts-config", "config.properties"]
+# Instead of config.properties, load_models could be passed dinamically as:
+# CMD ["torchserve", "--start", "--model-store", "model-store", "--models", "pt_br=pt_br.mar"]
