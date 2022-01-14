@@ -52,7 +52,7 @@ To check what version of CUDA is installed, run:
 
 `nvidia-smi`
 
-To check whether or not the application can access CUDA, run in the python interpreter:
+To check whether the application can access CUDA, run in the python interpreter:
 ````
 import torch
 torch.cuda.is_available()  # check if CUDA is available
@@ -60,7 +60,7 @@ torch.zeros(1).cuda()  # check if GPU is compatible with running CUDA
 ````
 
 If the GPU is not compatible with this CUDA version (10.2), you can build yourself the 
-Torchserve base image with a custom CUDA version following the steps at? https://github.com/pytorch/serve/tree/master/docker 
+Torchserve base image with a custom CUDA version following the steps at: https://github.com/pytorch/serve/tree/master/docker 
 
 ## Application access to models
 There are two ways to use the models in the application
