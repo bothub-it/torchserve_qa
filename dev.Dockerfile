@@ -6,6 +6,7 @@
 # model_name should be "en", "pt_br" or "multilang".
 #
 
+# Change if using GPU (torchserve:0.5.1-gpu image uses CUDA 10.2)
 FROM pytorch/torchserve:latest
 # FROM pytorch/torchserve:0.5.1-gpu
 

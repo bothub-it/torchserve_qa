@@ -7,8 +7,8 @@
 # model_name should be "en", "pt_br" or "multilang".
 #
 
-FROM pytorch/torchserve:latest
-# FROM pytorch/torchserve:0.5.1-gpu
+# FROM pytorch/torchserve:latest
+FROM pytorch/torchserve:0.5.1-gpu
 
 ENV WORKDIR /home/model-server
 
