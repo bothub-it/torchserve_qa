@@ -8,7 +8,7 @@ Torchserve requires the models to be in .mar extension.
 It can be done processing pytorch models `torch-model-archiver` utility.
 - see _build_mar_example.sh_ for example
 
-Newly .mar models must be at **/model-store** directory to proceed.
+Built .mar models must be at **/model-store** directory to proceed.
 
 ## Build and run
 ### Using docker-compose
@@ -102,6 +102,6 @@ Example:
 docker build --build-arg DOWNLOAD_MODELS="pt_br:1.0=http://modelurl.com/pt_br|en:1.0=http://modelurl.com/en" \
 -t torchserve_prototype:latest .
 ````
-### Restrictions
+### Requirements
 - _The zipped pytorch model from URL must be formatted as `any_name.zip/model_name/model_files_here`_
 - _Model names must be, for now, `pt_br`, `en` or `multilang`_
