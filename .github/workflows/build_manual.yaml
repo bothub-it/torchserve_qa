@@ -4,8 +4,8 @@ on:
     inputs:
       DOWNLOAD_MODELS:
         required: true
-        default: 'pt_br:1.0=URL'
-        description: 'model_name:version=url|...'
+        default: 'pt_br:1.0=URL|...'
+        description: 'DOWNLOAD_MODELS'
       image_name:
         required: true
         description: 'Image name'
