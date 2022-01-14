@@ -87,7 +87,7 @@ https://pytorch.org/serve/inference_api.html
 
 # Continuous Integration (production)
 
-To build images directly for dockerhub, the main `Dockerfile` automatically do the steps mentioned above:
+The main `Dockerfile` automatically do the steps mentioned above:
 - Download models at buildtime
 - Process models to .mar extension
 
