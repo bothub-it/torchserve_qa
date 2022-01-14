@@ -46,6 +46,8 @@ _Sometimes the exact same version is not required (there is compatibility in som
 ### Debug GPU compatibility
 Run these commands to debug GPU compatibility, **first outside the container and then inside the container**:
 
+_Remember the container must have access to the GPU outside using `--gpus all` command._
+
 To check what version of CUDA is installed, run:
 
 `nvidia-smi`
@@ -56,7 +58,8 @@ import torch
 torch.cuda.is_available()
 ````
 
-If the GPU is not compatible with this CUDA version (10.2), you can build yourself the Torchserve image with a custom CUDA version following the steps at https://github.com/pytorch/serve/tree/master/docker 
+If the GPU is not compatible with this CUDA version (10.2), you can build yourself the 
+Torchserve base image with a custom CUDA version following the steps at? https://github.com/pytorch/serve/tree/master/docker 
 
 ## Application access to models
 There are two ways to use the models in the application
