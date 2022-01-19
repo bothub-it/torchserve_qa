@@ -44,7 +44,7 @@ the GPU should be compatible with CUDA 10.2 and the same version should be insta
 _Sometimes the exact same version is not required (there is compatibility in some versions), but its not recommended_
 
 ### Debug GPU compatibility
-Run these commands to debug GPU compatibility, **first outside the container and then inside the container**:
+Run these commands to debug GPU compatibility, run them **outside the container and inside the container**:
 
 _Remember the container must have access to the GPU outside using `--gpus all` command._
 
