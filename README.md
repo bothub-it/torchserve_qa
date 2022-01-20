@@ -73,7 +73,8 @@ COPY model-store ${WORKDIR}/model-store
 ````
 docker run --rm -it \
 -p 8080:8080 -p 8081:8081 -p 8082:8082 \
--v $(pwd)/model-store:/home/model-server/model-store torchserve_prototype:latest 
+-v $(pwd)/model-store:/home/model-server/model-store \
+torchserve_prototype:latest 
 ````
 
 ## Testing endpoints
@@ -84,7 +85,7 @@ Endpoint status:
 
 Inference example:
 
-`curl http://localhost:8080/predictions/QA_pt-br -T test.json`
+`curl http://localhost:8080/predictions/pt_br -T request_example.json`
 
 See more at:
 
