@@ -16,6 +16,7 @@ class ModelHandler(BaseHandler):
     }
 
     model_args = {
+        "n_best_size": 3,
         "num_train_epochs": 2,
         "max_seq_length": 384,
         "doc_stride": int(384 * 0.8),
