@@ -105,7 +105,7 @@ class ModelHandler(BaseHandler):
                     {
                         "text": ans['answer'][i],
                         "confidence": prob["probability"][i]
-                    } for i in range(len(ans['answer']))
+                    } for i in range(len(ans['answer'])) if ans['answer'][i] and ans['answer'][i] != 'empty'
                 ],
                 "id": ans['id']
             })
