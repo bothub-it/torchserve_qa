@@ -4,6 +4,8 @@ import os
 import requests
 import sys
 import zipfile
+import urllib.request 
+import shutil
 
 logger = logging.getLogger(__name__)
 
@@ -18,9 +20,14 @@ def download_file(url, file_name):
 
 
 def download_models(*args):
+    
     models = args[0].split("|")
     workdir = args[1]
-
+    workdir_qna2 = os.path.join(workdir, 'model-store')
+    download_file('https://bothub-nlp-models.s3.amazonaws.com/qa-2/qna2.mar', 'qna2.mar')
+    if not os.path.isdir(workdir_qna2):
+        os.mkdir(workdir_qna2)
+    shutil.move("qna2.mar",os.path.join(workdir_qna2, 'qna2.mar'))
     for model_info in models:
         model, url = model_info.split("=")
         model_name, version = model.split(":")

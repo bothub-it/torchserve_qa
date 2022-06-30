@@ -3,6 +3,7 @@ from simpletransformers.question_answering import QuestionAnsweringModel
 import torch
 import logging
 import json
+import requests
 
 logger = logging.getLogger(__name__)
 
@@ -71,9 +72,10 @@ class ModelHandler(BaseHandler):
             data = item.get("data")
             if data is None:
                 data = item.get("body")
-
+            
             try:
                 data = json.loads(data.decode('utf-8'))
+                question = data.get('question', '')
             except AttributeError:
                 pass
 
@@ -93,22 +95,35 @@ class ModelHandler(BaseHandler):
 
         answers = sorted(prediction[0], key=lambda k: k['id'])
         probs = sorted(prediction[1], key=lambda k: k['id'])
+        qna2 = []
 
-        predicted = [(answers[i], probs[i]) for i in range(len(answers))]
+        for i in range(len(probs[0]['probability'])):
+            payld = query[0]['qas'][0]['question'] + " " + str(answers[0]['answer'][i])
+            url = "http://0.0.0.0:8080/predictions/qna2/1.0"
+            payload = {
+                "text": payld,
+                "from": "pt",
+                "to": "test"
+            }
+            r = requests.post(url, json=payload)
+            data = r.json()
+            qna2.append(data['text'])
+        qna_final = [{'id': 0, 'natural_ans': qna2}]
+        predicted = [(answers[i], probs[i], qna_final[i]) for i in range(len(answers))]
 
         return predicted
 
     def postprocess(self, predicted):
         result = []
-        for ans, prob in predicted:
+        for ans, prob, qna in predicted:
             result.append({
                 "answers": [
                     {
                         "text": ans['answer'][i],
-                        "confidence": prob["probability"][i]
+                        "confidence": prob["probability"][i],
+                        "qna2": qna["natural_ans"][i]
                     } for i in range(len(ans['answer'])) if ans['answer'][i] and ans['answer'][i] != 'empty'
                 ],
                 "id": ans['id']
             })
         return result
-
