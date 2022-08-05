@@ -24,6 +24,8 @@ RUN pip3 install -r build_requirements.txt
 
 COPY model-assets/. ${WORKDIR}
 
+COPY dockerd-entrypoint.sh /usr/local/bin/
+
 ARG DOWNLOAD_MODELS
 
 RUN if [ ${DOWNLOAD_MODELS} ]; then \
