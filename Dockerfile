@@ -25,17 +25,16 @@ RUN pip3 install -r build_requirements.txt
 COPY model-assets/. ${WORKDIR}
 
 COPY dockerd-entrypoint.sh /usr/local/bin/
+RUN chown -Rv model-server /home/model-server/model-store
 
 ARG DOWNLOAD_MODELS
+
+USER model-server
 
 RUN if [ ${DOWNLOAD_MODELS} ]; then \
         python3 download_models.py ${DOWNLOAD_MODELS} ${WORKDIR} && \
         python3 build_mar_models.py ${DOWNLOAD_MODELS} ${WORKDIR}; \
     fi
-
-RUN chown -Rv model-server /home/model-server/model-store
-
-USER model-server
 
 CMD ["serve"]
 
