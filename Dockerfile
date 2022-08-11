@@ -36,5 +36,5 @@ RUN if [ ${DOWNLOAD_MODELS} ]; then \
 
 USER model-server
 
-CMD ["torchserve", "--start", "--model-store", "model-store"]
+CMD ["serve"]
 
