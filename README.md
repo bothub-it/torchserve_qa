@@ -2,15 +2,15 @@
 
 # Training and Generating .mar files
 At the root project directory:
-- python train.py your_csv_file.csv
 
-- mv setup_config.json qna2/
-- mkdir models/qna2
-- cp qna2 models/
-- cp build-assets/* .
-
-- python build-assets/build_mar_models_qna.py qna2:1.0=none .
-
+````
+python train.py your_csv_file.csv
+mv setup_config.json qna2/
+mkdir models/qna2
+cp qna2 models/
+cp build-assets/* .
+python build-assets/build_mar_models_qna.py qna2:1.0=none .
+````
 Save this file somewhere where you could user Curl command later.
 
 Set QNA_MODEL env variable this .mar files generated.
